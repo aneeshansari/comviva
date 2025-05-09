@@ -16,8 +16,7 @@ use following commands to make kubectl work
 
 run this command on all worker nodes...
 
-kubeadm join 172.31.12.220:6443 --token rk7hel.1uxvfuufmol1n5z6 \
-        --discovery-token-ca-cert-hash sha256:cac5784fe9e51df4f82b993533046b100c795ed76fb2ce64ddb63c2661b22eda
+kubeadm join from output of your kubeadm init command .
 ############################################################################################################################################################
 step 3.
 execute cilium.sh only on master node. 
