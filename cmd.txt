@@ -1,0 +1,57 @@
+ kubectl get po
+ kubectl get pod
+ kubectl get pods
+ kubectl api-resources
+ vi .bashrc
+ kubectl get nodes
+ kubectl get pod -n kube-system
+ kubectl run mypod --image nginx:latest --port 80
+ kubectl get pod
+ kubectl describe pods mypod
+ kubectl get pod
+ kubectl describe pods mypod
+ kubectl get pod
+ kubectl logs mypod
+ kubectl get pod
+ kubectl exec -it mypod -- bash
+ kubectl exec -it mypod -- ls
+ kubectl exec -it mypod -- cat /etc/passwd
+ kubectl exec -it mypod -- cat /etc/passwd > logs.txt
+ cat logs.txt
+ ls
+ cat > mango.txt
+ ls
+ kubectl cp mango.txt mypod:/tmp
+ kubectl exec -it mypod -- bash
+ kubectl cp mypod:/tmp/apple.txt .
+ ls
+ kubectl cp mypod:/tmp/apple.txt apple.txt
+ ls
+ cat apple.txt
+ kubectl get pods
+ vi pod.yaml
+ kubectl api-resources
+ vi pod.yaml
+ #kubectl run mypod --image nginx:latest --port 80
+ kubectl run --help
+ vi pod.yaml
+ kubectl run mypod --image nginx:latest --port 80 --dry-run=client -o yaml
+ kubectl run mypod --image nginx:latest --port 80 --dry-run=client -o yaml > test.yaml
+ vi test.yaml
+ vi pod.yaml
+ kubectl get pods
+ kubectl exec -it mypod -- bash
+ vi pod.yaml
+ kubectl create -f pod.yaml
+ kubectl get pod
+ kubectl describe po test
+ kubectl get pod
+ kubectl logs test -c con1
+ kubectl logs test -c con2
+ kubectl get pod
+ kubectl exec -it test -c con1 -- bash
+ kubectl exec -it test -c con2 -- bash
+ vi pod.yaml
+ history
+ kubectl get pod
+ kubectl get pod -o wide
