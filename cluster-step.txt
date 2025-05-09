@@ -8,3 +8,7 @@ kubeadm init
 
 step 3.
 execute cilium.sh only on master node. 
+
+step 4. 
+check cluster by running following CMD
+kubectl get nodes
