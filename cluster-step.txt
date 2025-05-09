@@ -1,0 +1,10 @@
+Installation steps
+step 1.
+execute first install.sh in all nodes 
+
+step 2.
+int master node
+kubeadm init 
+
+step 3.
+execute cilium.sh only on master node. 
