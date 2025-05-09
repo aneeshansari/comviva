@@ -69,7 +69,8 @@ sudo echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://downl
 sudo apt-get update && sudo apt-get install -y cri-o
 
 # auto completion 
-echo "source <(kubectl completion bash) >> ~/.bashrc"
-sudo "source ~/.bashrc"
+#echo "source <(kubectl completion bash) >> ~/.bashrc"
+#sudo "source ~/.bashrc"
 # Start and enable CRI-O service
+sudo systemctl start crio
 sudo systemctl enable --now crio
