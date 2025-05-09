@@ -74,3 +74,4 @@ sudo apt-get update && sudo apt-get install -y cri-o
 # Start and enable CRI-O service
 sudo systemctl start crio
 sudo systemctl enable --now crio
+
