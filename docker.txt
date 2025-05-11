@@ -1,0 +1,166 @@
+##############################
+#     Docker Step-by-Step    #
+##############################
+
+🔧 1. Docker Basics
+
+Check Docker Version:
+docker version
+
+Get Detailed Docker Info:
+docker info
+
+Search for Docker Images:
+docker search nginx
+
+Docker Data Directory (on host):
+ls /var/lib/docker
+
+
+🚀 2. Running Containers
+
+Run NGINX with Port Mapping (Foreground):
+docker container run --publish 8080:80 nginx
+
+Run NGINX in Background:
+docker container run --publish 8080:80 --detach nginx
+
+List All Containers (Running + Stopped):
+docker container ls -a
+
+Name the Container:
+docker container run --publish 8080:80 --detach --name my-nm nginx
+
+View Logs:
+docker container logs my-nm
+
+See Running Processes Inside Container:
+docker container top <container-id>
+
+Help for All Container Commands:
+docker container --help
+
+
+🧹 3. Managing Containers
+
+Remove a Container:
+docker container rm <first-3-characters-of-id>
+
+Start a Stopped Container:
+docker container start <container-id>
+
+Attach vs Exec:
+
+Attach (connect to main process):
+docker attach <container-id>
+
+Exec (start a new process):
+docker exec -it <container-id> bash
+
+
+📊 4. Monitor Resources
+
+Live Stats of Running Containers:
+docker container stats
+
+
+🔄 5. Container to Image
+
+Commit Container Changes as New Image:
+docker commit <container-id> new-image-name
+
+Check Image History:
+docker history <image-id>
+
+
+💾 6. Save & Load Docker Images
+
+Save Docker Image to a TAR File:
+docker save myimage:latest -o myimage.tar
+
+Load Docker Image from TAR File:
+docker load < myimage.tar
+
+
+🌐 7. Running Apache/Nginx with Custom Commands
+
+Run Apache from Custom Image:
+docker run -it -d --name myserver130 -p 88:80 myimage /usr/sbin/httpd -D FOREGROUND
+
+Run Nginx from Custom Image:
+docker run -itd --name myserver133 -p 80:80 myserver:1.1 /usr/sbin/nginx -g 'daemon off;'
+
+
+📤 8. Upload to Docker Hub
+
+Tag Image for Docker Hub:
+docker image tag <image-id> username/myweb:latest
+
+Login to Docker Hub:
+docker login
+
+Push Image to Docker Hub:
+docker image push username/myweb:latest
+
+
+📁 9. File Copy Between Host & Container
+
+Host to Container:
+docker cp foo.txt <container-id>:/foo.txt
+
+Container to Host:
+docker cp <container-id>:/foo.txt foo.txt
+
+
+🌐 10. Docker Networking
+
+Create Custom Network:
+docker network create my_conn
+
+Run Container in Custom Network:
+docker container run -d --name mywebsite --network my_conn nginx
+
+Ping Between Containers by Name:
+docker exec -it myweb001 ping myweb002
+
+
+📂 11. Docker Volumes (Persistent Data)
+
+Run with Named Volume:
+docker run -d --name myDB -e MYSQL_ALLOW_EMPTY_PASSWORD=True -v mysql-db:/var/lib/mysql mysql
+
+Bind Mount a Local Directory:
+docker run -d --name myDB22 -e MYSQL_ALLOW_EMPTY_PASSWORD=True -v /root/mydir:/var/lib/mysql mysql
+
+TempFS Mount (RAM only):
+docker run -itd --name tmptest --mount type=tmpfs,destination=/app nginx:latest
+
+
+🏗️ 12. Dockerfile and Custom Image
+
+Sample Dockerfile:
+---------------------
+FROM ubuntu:16.04
+MAINTAINER ANEESH
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt update
+RUN apt install apache2 wget unzip -y
+ADD web.tar.gz /var/www/html
+EXPOSE 80
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+WORKDIR /var/www/html/
+---------------------
+
+Build Image from Dockerfile:
+docker build -t myweb:1.0 .
+
+Run from Built Image:
+docker run -d --name myweb -p 8989:80 myweb:1.0
+
+
+
+📏 13. Resource Limits
+
+Limit Memory for Container:
+docker run -d -p 8081:80 --memory="256m" nginx
+
