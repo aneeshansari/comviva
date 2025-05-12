@@ -4,6 +4,7 @@ metadata:
    name: test
    labels: 
       app: myapp
+      env: dev
 spec: 
   containers:
   - name: con1
