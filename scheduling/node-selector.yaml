@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodesel
+spec:
+   replicas: 1
+   selector:
+     matchLabels:
+        app: myapp
+   template:
+     metadata:
+       labels:
+         app: myapp
+     spec:
+       containers:
+       - name: con1
+         image: nginx:latest
+         ports: 
+         - containerPort: 80
+       nodeSelector:
+         cpu: ryzen
+
