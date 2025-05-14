@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: affreq
+spec:
+   replicas: 1
+   selector:
+     matchLabels:
+        app: myapp
+   template:
+     metadata:
+       labels:
+         app: myapp
+     spec:
+       containers:
+       - name: con1
+         image: nginx:latest
+         ports: 
+         - containerPort: 80
+       affinity:
+         nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: cpu
+                operator: NotIn  #In means affinity # NotIn is antiAffinity
+                values:
+                - ryzen
