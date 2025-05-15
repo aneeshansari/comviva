@@ -1,0 +1,14 @@
+apiVersion: v1 
+kind: Pod
+metadata: 
+   name: mangoapp
+   labels: 
+      app: mango
+      env: dev
+spec: 
+  containers:
+  - name: con1
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+
