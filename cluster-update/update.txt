@@ -1,0 +1,60 @@
+Version check 
+
+sudo apt update
+sudo apt-cache madison kubeadm
+
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+
+sudo echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+
+apt-cache madison kubeadm
+
+first update kubeadm 
+
+apt update && apt install kubeadm=1.31.9-1.1
+
+
+kubeadm upgrade plan
+
+
+kubeadm upgrade apply v1.31.9
+
+
+install kubelet and kubectl 
+apt update && apt install kubelet=1.31.9-1.1 kubectl=1.31.9-1.1
+
+systemctl restart kubelet.service
+
+
+###################
+update worker 
+###################
+
+Disable scheduling new pods and drain node
+
+kubectl drain worker1 --ignore-daemonsets --delete-emptydir-data --force
+
+kubectl cordon worker1
+
+
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+
+sudo echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+
+apt-cache madison kubeadm
+
+
+
+ apt install kubeadm=1.31.9-1.1
+
+ kubeadm upgrade node
+
+ apt install kubelet=1.31.9-1.1 kubectl=1.31.9-1.1
+
+systemctl restart kubelet.service
+
+kubectl uncordon worker1
