@@ -10,7 +10,10 @@ spec:
     image: mysql:5.7
     env:
     - name: MYSQL_ROOT_PASSWORD
-      value: test123
+      valueFrom:
+        secretKeyRef:
+          name: wppass 
+          key: password
     - name: MYSQL_DATABASE
       value: wordpress
     ports:
