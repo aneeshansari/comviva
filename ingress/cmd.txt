@@ -1,0 +1,4 @@
+kubectl create secret tls myapping --cert cert.pem --key key.pem --dry-run=client -o yaml > ing-secret.yaml
+
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+
