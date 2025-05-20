@@ -1,0 +1,22 @@
+apiVersion: v1 
+kind: Pod
+metadata: 
+   name: sapod
+   labels: 
+      app: myapp
+   namespace: devops
+spec: 
+  serviceAccount: robo
+  containers:
+  - name: con1
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+    resources:
+      requests:
+        cpu: "1"
+        memory: "128Mi"
+      limits:
+        cpu: "2"
+        memory: "256Mi"
+
